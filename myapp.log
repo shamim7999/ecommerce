@@ -1,0 +1,87 @@
+2024-02-25T17:37:13.564+06:00  INFO 36964 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : Starting EcommerceApplication using Java 21.0.1 with PID 36964 (/home/shamim/workspace/ecommerce/target/classes started by shamim in /home/shamim/workspace/ecommerce)
+2024-02-25T17:37:13.566+06:00  INFO 36964 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-02-25T17:37:13.595+06:00  INFO 36964 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-25T17:37:13.595+06:00  INFO 36964 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-25T17:37:13.981+06:00  INFO 36964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-25T17:37:13.993+06:00  INFO 36964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 JPA repository interfaces.
+2024-02-25T17:37:14.297+06:00  INFO 36964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-02-25T17:37:14.304+06:00  INFO 36964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-25T17:37:14.304+06:00  INFO 36964 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-25T17:37:14.324+06:00  INFO 36964 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-25T17:37:14.324+06:00  INFO 36964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 729 ms
+2024-02-25T17:37:14.408+06:00  INFO 36964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-25T17:37:14.433+06:00  INFO 36964 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-25T17:37:14.448+06:00  INFO 36964 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-25T17:37:14.558+06:00  INFO 36964 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-25T17:37:14.572+06:00  INFO 36964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : test - Starting...
+2024-02-25T17:37:14.749+06:00  INFO 36964 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : test - Added connection com.mysql.cj.jdbc.ConnectionImpl@43874c5e
+2024-02-25T17:37:14.751+06:00  INFO 36964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : test - Start completed.
+2024-02-25T17:37:14.776+06:00  WARN 36964 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-25T17:37:14.777+06:00  WARN 36964 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-25T17:37:15.205+06:00  INFO 36964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-25T17:37:15.248+06:00  INFO 36964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-25T17:37:15.282+06:00  WARN 36964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-25T17:37:15.446+06:00  WARN 36964 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-25T17:37:15.523+06:00  INFO 36964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-02-25T17:37:15.543+06:00  INFO 36964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-02-25T17:37:15.549+06:00  INFO 36964 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : Started EcommerceApplication in 2.253 seconds (process running for 2.868)
+2024-02-25T17:37:32.334+06:00  INFO 36964 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)
+2024-02-25T17:37:32.347+06:00  INFO 36964 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-25T17:37:32.350+06:00  INFO 36964 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : test - Shutdown initiated...
+2024-02-25T17:37:32.358+06:00  INFO 36964 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : test - Shutdown completed.
+2024-02-25T17:37:32.441+06:00  INFO 36964 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : Starting EcommerceApplication using Java 21.0.1 with PID 36964 (/home/shamim/workspace/ecommerce/target/classes started by shamim in /home/shamim/workspace/ecommerce)
+2024-02-25T17:37:32.443+06:00  INFO 36964 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-02-25T17:37:32.581+06:00  INFO 36964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-25T17:37:32.583+06:00  INFO 36964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JPA repository interfaces.
+2024-02-25T17:37:32.672+06:00  INFO 36964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-02-25T17:37:32.673+06:00  INFO 36964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-25T17:37:32.673+06:00  INFO 36964 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-25T17:37:32.679+06:00  INFO 36964 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-25T17:37:32.679+06:00  INFO 36964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 233 ms
+2024-02-25T17:37:32.706+06:00  INFO 36964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-25T17:37:32.708+06:00  INFO 36964 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-25T17:37:32.710+06:00  INFO 36964 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-25T17:37:32.711+06:00  INFO 36964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : test - Starting...
+2024-02-25T17:37:32.722+06:00  INFO 36964 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : test - Added connection com.mysql.cj.jdbc.ConnectionImpl@4dc984b1
+2024-02-25T17:37:32.723+06:00  INFO 36964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : test - Start completed.
+2024-02-25T17:37:32.724+06:00  WARN 36964 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-25T17:37:32.724+06:00  WARN 36964 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-25T17:37:32.759+06:00  INFO 36964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-25T17:37:32.768+06:00  INFO 36964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-25T17:37:32.789+06:00  WARN 36964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-25T17:37:32.854+06:00  WARN 36964 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-25T17:37:32.888+06:00  INFO 36964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-02-25T17:37:32.896+06:00  INFO 36964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-02-25T17:37:32.898+06:00  INFO 36964 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : Started EcommerceApplication in 0.481 seconds (process running for 20.217)
+2024-02-25T17:37:32.899+06:00  INFO 36964 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-02-25T17:39:12.356+06:00  INFO 36964 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2024-02-25T17:39:12.362+06:00  INFO 36964 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-25T17:39:12.363+06:00  INFO 36964 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : test - Shutdown initiated...
+2024-02-25T17:39:12.369+06:00  INFO 36964 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : test - Shutdown completed.
+2024-02-25T17:45:24.514+06:00  INFO 37504 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : Starting EcommerceApplication using Java 21.0.1 with PID 37504 (/home/shamim/workspace/ecommerce/target/classes started by shamim in /home/shamim/workspace/ecommerce)
+2024-02-25T17:45:24.515+06:00  INFO 37504 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-02-25T17:45:24.562+06:00  INFO 37504 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-25T17:45:24.562+06:00  INFO 37504 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-25T17:45:25.034+06:00  INFO 37504 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-25T17:45:25.048+06:00  INFO 37504 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 0 JPA repository interfaces.
+2024-02-25T17:45:25.450+06:00  INFO 37504 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-02-25T17:45:25.459+06:00  INFO 37504 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-25T17:45:25.459+06:00  INFO 37504 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-02-25T17:45:25.483+06:00  INFO 37504 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-25T17:45:25.483+06:00  INFO 37504 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 920 ms
+2024-02-25T17:45:25.575+06:00  INFO 37504 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-25T17:45:25.602+06:00  INFO 37504 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-02-25T17:45:25.619+06:00  INFO 37504 --- [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-25T17:45:25.743+06:00  INFO 37504 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-25T17:45:25.758+06:00  INFO 37504 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : test - Starting...
+2024-02-25T17:45:25.962+06:00  INFO 37504 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : test - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e6845c4
+2024-02-25T17:45:25.963+06:00  INFO 37504 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : test - Start completed.
+2024-02-25T17:45:25.989+06:00  WARN 37504 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-25T17:45:25.989+06:00  WARN 37504 --- [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-02-25T17:45:26.551+06:00  INFO 37504 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-25T17:45:26.645+06:00  INFO 37504 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-25T17:45:26.686+06:00  WARN 37504 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-25T17:45:26.859+06:00  WARN 37504 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-02-25T17:45:26.938+06:00  INFO 37504 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-02-25T17:45:26.959+06:00  INFO 37504 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-02-25T17:45:26.965+06:00  INFO 37504 --- [restartedMain] org.dsi.ecommerce.EcommerceApplication   : Started EcommerceApplication in 2.817 seconds (process running for 3.289)

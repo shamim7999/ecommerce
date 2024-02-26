@@ -1,0 +1,16 @@
+body{
+    background: #e2e2e2!important;
+}
+
+.custom-bg {
+    background: #673ab7!important;
+}
+
+
+.row h1 {
+    text-align: center;
+}
+
+textarea {
+    height: 200px;
+}

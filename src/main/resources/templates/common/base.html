@@ -47,10 +47,18 @@
 <!--            </form>-->
 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item-active">
+                <li th:if="${principal == null}" class="nav-item-active">
                     <a href="#" th:href="@{/login}" class="nav-link">Login</a>
                 </li>
-                <li class="nav-item-active">
+                <li th:if="${principal != null}" class="nav-item-active">
+                    <div th:object="${userDto}">
+                        <a href="#" th:text="${userDto.name}" class="nav-link" style="color: red;">User Name</a>
+                    </div>
+                </li>
+                <li th:if="${principal != null}" class="nav-item-active">
+                    <a href="#" th:href="@{/logout}" class="nav-link">Logout</a>
+                </li>
+                <li th:if="${principal == null}" class="nav-item-active">
                     <a href="#" th:href="@{/register}" class="nav-link">Register</a>
                 </li>
             </ul>
@@ -59,7 +67,7 @@
     </div>
 </nav>
 
-    <h1 th:fragment="hello">Hello, world!</h1>
+
 
 
 <section th:fragment="jsFragment">

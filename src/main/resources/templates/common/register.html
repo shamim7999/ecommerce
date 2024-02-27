@@ -2,17 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link th:replace="/common/index::bootstrapCssFragment">
-    <link th:replace="/common/index::cssFragment">
+    <link th:replace="/common/base::bootstrapCssFragment">
+    <link th:replace="/common/base::cssFragment">
     <title>Title</title>
 </head>
 <body>
-    <section th:replace="/common/index::navbarFragment"></section>
+    <section th:replace="/common/base::navbarFragment"></section>
     <div class="container-fluid">
       <div class="row mt-5">
 
         <div class="col-md-4 offset-md-4">
           <div class="card">
+
+              <!--                        alert message-->
+              <div th:if="${message}" th:classappend="${type}" class="alert" role="alert">
+                  <p th:text="${message}"></p>
+              </div>
+
               <div class="card-body">
                   <h1> Register Here !! </h1>
                 <form th:action="@{/processRegistration}" method="post">
@@ -39,7 +45,7 @@
 
                   <div class="form-group">
                     <label for="address">User Address</label>
-                    <textarea class="form-control" type="text"
+                    <textarea class="form-control"
                               id="address" name="address" aria-describedby="emailHelp"
                               placeholder="Enter your Address"
                     >
@@ -57,6 +63,6 @@
         </div>
       </div>
     </div>
-    <section th:replace="/common/index::jsFragment"></section>
+    <section th:replace="/common/base::jsFragment"></section>
 </body>
 </html>

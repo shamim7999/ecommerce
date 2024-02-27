@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="/common/base::bootstrapCssFragment">
+    <link th:replace="/common/base::cssFragment">
+    <title>Title</title>
+</head>
+<body>
+    <section th:replace="/common/base::navbarFragment"></section>
+
+        <div th:fragment="hello" th:object="${userDto}">
+            <h1 th:text=" 'Hello ' + ${userDto.name}">Hello World!</h1>
+        </div>
+
+    <section th:replace="/common/base::jsFragment"></section>
+</body>
+</html>

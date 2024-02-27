@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Hello, world from Tester.HTML file!</title>
-    <link th:replace="common/index::cssFragment" />
-    <link th:replace="common/index::bootstrapCssFragment" />
+    <link th:replace="common/base::cssFragment" />
+    <link th:replace="common/base::bootstrapCssFragment" />
 </head>
 <body>
 
-    <section th:replace="common/index::navbarFragment"></section>
+    <section th:replace="common/base::navbarFragment"></section>
     <h1>Hello, world from Tester.HTML file!</h1>
 
 
-    <section th:replace="common/index::jsFragment"></section>
+    <section th:replace="common/base::jsFragment"></section>
 </body>
 </html>

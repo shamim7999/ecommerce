@@ -1,6 +1,7 @@
 package org.dsi.ecommerce.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class User {
     @Column(length = 30, nullable = false)
     private String name;
 
+    @Email
     @NotBlank
     @NotNull
     @Column(length = 50, nullable = false)
@@ -31,7 +33,7 @@ public class User {
 
     @NotBlank
     @NotNull
-    @Column(length = 30, nullable = false)
+    @Column(length = 200, nullable = false)
     private String password;
 
     @NotBlank
@@ -54,4 +56,5 @@ public class User {
     @Column(length = 100, nullable = false)
     private String address;
 
+    private boolean isEnabled;
 }

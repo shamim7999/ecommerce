@@ -17,7 +17,9 @@ public class CategoryService {
     public void createCategory(Category category) throws Exception{
         categoryRepository.save(category);
     }
-
+    public Category findByCategoryId(int categoryId) {
+        return categoryRepository.findById(categoryId).get();
+    }
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }

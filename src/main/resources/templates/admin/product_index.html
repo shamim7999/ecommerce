@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="/common/base::bootstrapCssFragment">
+    <link th:replace="/common/base::cssFragment">
+    <title>Admin - Index</title>
+</head>
+<body>
+<section th:replace="/common/base::navbarFragment"></section>
+    <div class="row mt-2 mx-2">
+
+
+
+        <div class="col-md-2">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                    All Products
+                </a>
+                <a href="#" class="list-group-item list-group-item-action"
+                   th:each="categoryDto : ${categoryDtos}" th:text="${categoryDto.title}">A second link item
+                </a>
+            </div>
+<!--            <div class="category-lists" th:each="categoryDto : ${categoryDtos}" th:text="${categoryDto}">-->
+
+<!--            </div>-->
+        </div>
+
+        <div class="col-md-8" >
+            <div class="row mt-4" >
+                <div class="col-md-3" th:each="productDto : ${productDtos}">
+                    <div class="card-columns">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"  th:text="${productDto.name}"></h5>
+                                <h3 class="card-text" th:text="${productDto.description}"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+<section th:replace="/common/base::jsFragment"></section>
+</body>
+</html>

@@ -1,10 +1,17 @@
 package org.dsi.ecommerce.services;
 
+import org.dsi.ecommerce.helper.ImageUpload;
+import org.dsi.ecommerce.helper.ShorterSentence;
 import org.dsi.ecommerce.models.Category;
 import org.dsi.ecommerce.models.Product;
 import org.dsi.ecommerce.repositories.CategoryRepository;
 import org.dsi.ecommerce.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -17,16 +24,20 @@ public class ProductService {
         this.categoryRepository = categoryRepository;
     }
 
-    public void createProduct(Product product, Category category) throws Exception {
+    public void createProduct(MultipartFile file, Product product, Category category) throws IOException {
         product.setPhoto("default.png");
-        //System.out.println("----------------------\n"+product.getName()+"-----------------------");
-
+        if(file != null && !file.isEmpty()) {
+            product.setPhoto(file.getOriginalFilename());
+            ImageUpload.uploadImage(file);
+        }
         product.setCategory(category);
-        category.getProducts().add(product);
+        productRepository.save(product);
+    }
 
-        System.out.println("SUCCESSSSSSS");
-
-        categoryRepository.save(category);
-
+    public List<Product> findAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .peek(product -> product.setDescription(ShorterSentence.get10Words(product.getDescription())))
+                .collect(Collectors.toList());
     }
 }

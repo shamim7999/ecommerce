@@ -10,6 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Table(name = "products")
 public class Product {
     @Id
@@ -26,22 +27,17 @@ public class Product {
     @Column(length = 1000, nullable = false)
     private String description;
 
-    @NotBlank
-    @NotNull
     @Column(length = 30, nullable = false)
     private String photo;
 
-    @NotBlank
     @NotNull
     @Column(nullable = false)
     private int price;
 
-    @NotBlank
     @NotNull
     @Column(nullable = false)
     private int discount;
 
-    @NotBlank
     @NotNull
     @Column(nullable = false)
     private int quantity;

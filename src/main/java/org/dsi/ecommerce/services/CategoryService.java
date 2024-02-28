@@ -14,7 +14,7 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public void createCategory(Category category) throws Exception{
+    public void createCategory(Category category) {
         categoryRepository.save(category);
     }
     public Category findByCategoryId(int categoryId) {

@@ -33,8 +33,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"  th:text="${productDto.name}"></h5>
-                                <h3 class="card-text" th:text="${productDto.description}"></h3>
+                                <p class="card-text" th:text="${productDto.description}"></p>
                             </div>
+
+                            <div class="footer">
+                                <button class="btn custom-bg text-white">ADD to Cart</button>
+                                <button class="btn btn-outline-success" th:text="${productDto.price}+' BDT'"></button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -62,10 +63,12 @@ public class AddProductController {
     }
 
     @GetMapping("/product-index")
-    public String goProductIndex(Model model) {
+    public String goProductIndex(@RequestParam("category") Optional<Integer> categoryId, Model model) {
+
+        int id = categoryId.orElse(0);
 
         List<ProductDto> productDtos =
-                dtoConverter.convertToListOfProductDTO(productService.findAllProducts());
+                dtoConverter.convertToListOfProductDTO(productService.findProductsByCategoryId(id));
         List<CategoryDto> categoryDtos =
                 dtoConverter.convertToListOfCategoryDTO(categoryService.getAllCategories());
         model.addAttribute("productDtos", productDtos);

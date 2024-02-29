@@ -40,4 +40,11 @@ public class ProductService {
                 .peek(product -> product.setDescription(ShorterSentence.get10Words(product.getDescription())))
                 .collect(Collectors.toList());
     }
+
+    public List<Product> findProductsByCategoryId(int categoryId) {
+        return productRepository.findAllByCategory_Id(categoryId)
+                .stream()
+                .peek(product -> product.setDescription(ShorterSentence.get10Words(product.getDescription())))
+                .collect(Collectors.toList());
+    }
 }

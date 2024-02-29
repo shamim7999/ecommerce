@@ -19,7 +19,7 @@ public class Product {
 
     @NotBlank
     @NotNull
-    @Column(length = 30, nullable = false)
+    @Column(length = 200, nullable = false)
     private String name;
 
     @NotBlank
@@ -27,7 +27,7 @@ public class Product {
     @Column(length = 1000, nullable = false)
     private String description;
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 200, nullable = false)
     private String photo;
 
     @NotNull

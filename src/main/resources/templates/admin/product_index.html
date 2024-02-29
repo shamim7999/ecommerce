@@ -17,8 +17,10 @@
                 <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                     All Products
                 </a>
-                <a href="#" class="list-group-item list-group-item-action"
-                   th:each="categoryDto : ${categoryDtos}" th:text="${categoryDto.title}">A second link item
+                <a class="list-group-item list-group-item-action"
+                   th:each="categoryDto : ${categoryDtos}"
+                   th:text="${categoryDto.title}"
+                   th:href="@{'/admin/product-index?category=' + ${categoryDto.id}}">A second link item
                 </a>
             </div>
 <!--            <div class="category-lists" th:each="categoryDto : ${categoryDtos}" th:text="${categoryDto}">-->
@@ -26,11 +28,12 @@
 <!--            </div>-->
         </div>
 
-        <div class="col-md-8" >
+        <div class="col-md-10" >
             <div class="row mt-4" >
-                <div class="col-md-3" th:each="productDto : ${productDtos}">
+                <div class="col-md-4 mb-4" th:each="productDto : ${productDtos}">
                     <div class="card-columns">
-                        <div class="card">
+                        <div class="card text-center custom-size">
+                            <img class="mx-auto d-block" style="max-height: 200px; max-width: 180px; width: auto;" th:src="@{'/image/'+ ${productDto.photo}}" alt="No Photo..">
                             <div class="card-body">
                                 <h5 class="card-title"  th:text="${productDto.name}"></h5>
                                 <p class="card-text" th:text="${productDto.description}"></p>

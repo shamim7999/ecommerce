@@ -37,3 +37,27 @@ textarea {
     background: #f5efef;
     cursor: pointer;
 }
+
+.discount-label {
+    font-size: 13px!important;
+    font-style: italic!important;
+}
+.product-card:hover {
+    background: #e2e2e2;
+    cursor: pointer;
+}
+
+.discount-label:hover {
+    color: red;
+}
+
+.fa-cart-plus {
+    font-size: 25px;
+    font-weight: 400;
+    color: white!important;
+}
+
+.cart-items {
+    font-weight: 400;
+    color: white!important;
+}

@@ -65,7 +65,7 @@ public class AddProductController {
     @GetMapping("/product-index")
     public String goProductIndex(@RequestParam("category") Optional<Integer> categoryId, Model model) {
 
-        int id = categoryId.orElse(0);
+        int id = categoryId.orElse(1);
 
         List<ProductDto> productDtos =
                 dtoConverter.convertToListOfProductDTO(productService.findProductsByCategoryId(id));

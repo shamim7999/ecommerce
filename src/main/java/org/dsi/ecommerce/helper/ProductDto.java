@@ -29,5 +29,11 @@ public class ProductDto {
 
     private int quantity;
 
+
     private CategoryDto categoryDto;
+
+    public int discountedPrice() {
+        int newPrice = (int)(this.price * this.discount)/100;
+        return (this.price - newPrice);
+    }
 }

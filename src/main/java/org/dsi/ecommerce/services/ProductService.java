@@ -6,6 +6,7 @@ import org.dsi.ecommerce.models.Category;
 import org.dsi.ecommerce.models.Product;
 import org.dsi.ecommerce.repositories.CategoryRepository;
 import org.dsi.ecommerce.repositories.ProductRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,5 +47,13 @@ public class ProductService {
                 .stream()
                 .peek(product -> product.setDescription(ShorterSentence.get10Words(product.getDescription())))
                 .collect(Collectors.toList());
+    }
+
+    public List<Product> getAllProductsSortedByCategory() {
+        return productRepository.findAll(Sort.by("category_id"));
+    }
+
+    public Product getProductById(int id) {
+        return productRepository.findById(id).orElseThrow();
     }
 }

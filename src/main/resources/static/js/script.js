@@ -36,11 +36,11 @@ function add_to_cart(pId, pName, pPrice) {
 function updateCart() {
     let cartString = localStorage.getItem("cart");
     let cart = JSON.parse(cartString);
-    if(cart == null || cart.length === 0) {
+    if(cart == null || cart.length == 0) {
         console.log("Cart is empty.!");
         $(".cart-items").html("( 0 )");
         $(".cart-body").html("<h3>Cart does not have any items</h3>");
-        $(".checkout-button").addClass("disabled");
+        $(".checkout-btn").attr("disabled", true);
     } else {
         $(".cart-items").html("( " + cart.length + " )");
         console.log(cart);
@@ -80,6 +80,7 @@ function updateCart() {
             </table>
         `;
         $(".cart-body").html(table);
+        $(".checkout-btn").attr("disabled", false);
     }
 }
 

@@ -75,4 +75,9 @@ public class AddProductController {
         model.addAttribute("categoryDtos", categoryDtos);
         return "admin/product_index";
     }
+
+    @GetMapping("/product-checkout")
+    public String goProductCheckout() {
+        return "admin/checkout";
+    }
 }

@@ -9,10 +9,12 @@ function add_to_cart(pId, pName, pPrice) {
         toastMessage(product.productQuantity + " " + product.productName + " Added !");
     } else {
         let pCart = JSON.parse(cart);
-        let oldProduct = pCart.find((product) => product.productId == pId);
+        let oldProduct = pCart.find((product) => product.productId === pId);
+        console.log("PID: ")
+        console.log(pId)
         if (oldProduct) {
             pCart.map((product) => {
-                if (product.productId == oldProduct.productId) {
+                if (product.productId === oldProduct.productId) {
                     product.productQuantity = oldProduct.productQuantity + 1;
                 }
                 return product;
@@ -34,7 +36,7 @@ function add_to_cart(pId, pName, pPrice) {
 function updateCart() {
     let cartString = localStorage.getItem("cart");
     let cart = JSON.parse(cartString);
-    if(cart == null || cart.length == 0) {
+    if(cart == null || cart.length === 0) {
         console.log("Cart is empty.!");
         $(".cart-items").html("( 0 )");
         $(".cart-body").html("<h3>Cart does not have any items</h3>");

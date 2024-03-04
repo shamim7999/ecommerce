@@ -2,11 +2,12 @@ package org.dsi.ecommerce.helper.converter;
 
 import org.dsi.ecommerce.helper.CategoryDto;
 import org.dsi.ecommerce.helper.ProductDto;
+import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.models.Category;
 import org.dsi.ecommerce.models.Product;
+import org.dsi.ecommerce.models.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,11 @@ public class DTOConverter {
     public DTOConverter(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
+
+    public UserDto convertToUserDTO(User user) {
+        return modelMapper.map(user, UserDto.class);
+    }
+
     public ProductDto convertToProductDTO(Product product) {
         ProductDto productDto = modelMapper.map(product, ProductDto.class);
         productDto.setCategoryDto(modelMapper.map(product.getCategory(), CategoryDto.class));

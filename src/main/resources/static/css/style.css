@@ -71,6 +71,12 @@ textarea {
     display: inline-block;
 }
 
+.homeLinks a {
+    display: inline;
+    text-decoration: none;
+    color: black;
+}
+
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */

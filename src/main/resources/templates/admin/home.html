@@ -12,7 +12,7 @@
 
 <div th:fragment="hello" th:object="${userDto}">
 
-    <div class="container">
+    <div class="container homeLinks">
         <!--                        alert message-->
         <div th:if="${message}" th:classappend="${type}" class="alert mt-3" role="alert">
             <p th:text="${message}"></p>
@@ -47,15 +47,17 @@
             </div>
 
             <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="container text-center">
-                            <img class="img-fluid" src="/image/products.png" alt="No Image..">
+                <a th:href="@{/admin/product-index}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container text-center">
+                                <img class="img-fluid" src="/image/products.png" alt="No Image..">
+                            </div>
+                            <h1 th:text="${products.size()}">3333</h1>
+                            <h1>Products</h1>
                         </div>
-                        <h1 th:text="${products.size()}">3333</h1>
-                        <h1>Products</h1>
                     </div>
-                </div>
+                </a>
             </div>
 
         </div>

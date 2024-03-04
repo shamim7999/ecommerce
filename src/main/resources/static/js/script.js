@@ -115,6 +115,10 @@ function toastMessage(msg) {
 
 }
 
+function removeCart() {
+    localStorage.clear()
+    updateCart()
+}
 
 $(document).ready(function () {
     updateCart();

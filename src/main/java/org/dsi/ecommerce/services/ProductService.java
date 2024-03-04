@@ -53,7 +53,8 @@ public class ProductService {
         return productRepository.findAll(Sort.by("category_id"));
     }
 
-    public Product getProductById(int id) {
-        return productRepository.findById(id).orElseThrow();
+    public Product getProductById(int id) throws Exception {
+        return productRepository.findById(id).orElseThrow(() -> new Exception("Resource Not Found"));
     }
+
 }

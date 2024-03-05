@@ -49,7 +49,9 @@
 
                             <div class="text-center">
                                 <button class="btn btn-outline-success">Order Now</button>
-                                <a th:href="@{/}"><button class="btn btn-outline-primary">Continue</button></a>
+                                <a th:href="@{/admin/product-index}" onclick="window.location.href='/admin/product-index'; return false;">
+                                    <button class="btn btn-outline-primary">Continue</button>
+                                </a>
                             </div>
                         </form>
                     </div>

@@ -59,4 +59,13 @@ public class UserProductController {
         model.addAttribute("categoryDtos", categoryDtos);
         return "user/product_index";
     }
+
+    @GetMapping("/product-details")
+    public String goProductDetails(@RequestParam("product") Optional<Integer> productId, Model model) throws Exception {
+        int id = productId.orElse(1);
+
+        model.addAttribute("productDto",
+                dtoConverter.convertToProductDTO(productService.getProductById(id)));
+        return "common/product_details";
+    }
 }

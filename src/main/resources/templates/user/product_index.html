@@ -41,7 +41,10 @@
                 <div class="col-md-4 mb-4" th:each="productDto : ${productDtos}">
                     <div class="card-columns">
                         <div class="card text-center custom-size product-card">
-                            <img class="mx-auto d-block" style="max-height: 200px; max-width: 180px; width: auto;" th:src="@{'/image/'+ ${productDto.photo}}" alt="No Photo..">
+                            <a th:href="@{'/user/product-details?product=' + ${productDto.id}}">
+                                <img class="mx-auto d-block" style="max-height: 200px; max-width: 180px; width: auto;"
+                                     th:src="@{'/image/'+ ${productDto.photo}}" alt="No Photo..">
+                            </a>
                             <div class="card-body">
                                 <h5 class="card-title"  th:text="${productDto.name}"></h5>
                                 <p class="card-text" th:text="${productDto.description}"></p>
@@ -50,11 +53,10 @@
                             <div class="footer">
 <!--                                <button class="btn custom-bg text-white" th:onclick="add_to_cart(productDto.id, productDto.name, productDto.price)">ADD to Cart</button>-->
 <!--                                -->
-                                <button class="btn custom-bg text-white"
-                                        th:data-name="${productDto.name}" th:data-id="${productDto.id}" th:data-price="${productDto.discountedPrice()}"
-                                        th:onclick="add_to_cart(this.getAttribute('data-id') ,
-                                    this.getAttribute('data-name'), this.getAttribute('data-price') ) ">Add To Cart</button>
-
+                                <a th:href="@{'/product-details?product=' + ${productDto.id} }"
+                                   th:onclick="'window.location.href=\'/product-details?product=' + ${productDto.id} + '\''"
+                                <button class="btn custom-bg text-white">Details</button>
+                                </a>
                                 <button class="btn btn-outline-success">
                                     <span th:text="'৳' +${productDto.discountedPrice() + '/-  '}"></span>
                                     <span class="text-secondary discount-label">

@@ -65,18 +65,29 @@ public class ProductController {
     public String goProductIndex(@RequestParam("category") Optional<Integer> categoryId, Model model) {
 
         int id = categoryId.orElse(1);
+        System.out.println("--------------------");
+        System.out.println("ID is: "+id);
+        System.out.println("--------------------");
+        model.addAttribute("productDtos",
+                dtoConverter.convertToListOfProductDTO(productService.findProductsByCategoryId(id)));
 
-        List<ProductDto> productDtos =
-                dtoConverter.convertToListOfProductDTO(productService.findProductsByCategoryId(id));
-        List<CategoryDto> categoryDtos =
-                dtoConverter.convertToListOfCategoryDTO(categoryService.getAllCategories());
-        model.addAttribute("productDtos", productDtos);
-        model.addAttribute("categoryDtos", categoryDtos);
+        model.addAttribute("categoryDtos",
+                dtoConverter.convertToListOfCategoryDTO(categoryService.getAllCategories()));
+
         return "admin/product_index";
     }
 
     @GetMapping("/product-checkout")
     public String goProductCheckout() {
         return "admin/checkout";
+    }
+
+    @GetMapping("/product-details")
+    public String goProductDetails(@RequestParam("product") Optional<Integer> productId, Model model) throws Exception {
+        int id = productId.orElse(1);
+
+        model.addAttribute("productDto",
+                dtoConverter.convertToProductDTO(productService.getProductById(id)));
+        return "common/product_details";
     }
 }

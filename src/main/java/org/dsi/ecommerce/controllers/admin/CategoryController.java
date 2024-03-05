@@ -11,16 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
-public class AddCategoryController {
+public class CategoryController {
 
     private final CategoryService categoryService;
     private final UserService userService;
 
-    public AddCategoryController(CategoryService categoryService, UserService userService) {
+    public CategoryController(CategoryService categoryService, UserService userService) {
         this.categoryService = categoryService;
         this.userService = userService;
     }

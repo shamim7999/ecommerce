@@ -32,7 +32,7 @@ public class HomeController {
 
     @GetMapping("/test")
     public String sendHome() {
-        return "common/test";
+        return "common/page";
     }
 
 //    @GetMapping({"/index", "/"})
@@ -84,8 +84,11 @@ public class HomeController {
     }
 
     @GetMapping("/all-products")
-    public String allProducts(@RequestParam("category") Optional<Integer> categoryId, @ModelAttribute UserDto userDto, Principal principal) {
+    public String allProducts(@RequestParam("category") Optional<Integer> categoryId,
+                              @RequestParam("productPage") Optional<Integer> productPage,
+                              @ModelAttribute UserDto userDto, Principal principal) {
 
+        int currentProductPage = productPage.orElse(1);
         int id = categoryId.orElse(1);
         System.out.println("--------------------");
         System.out.println("CategoryID is: "+id);
@@ -95,9 +98,9 @@ public class HomeController {
             return "redirect:/login";
 
         if(userDto.getRole().equals("ROLE_ADMIN")) {
-            return "redirect:/admin/product-index?category="+id;
+            return "redirect:/admin/product-index?category="+id+"&productPage="+currentProductPage;
         }
-        return "redirect:/user/product-index?category="+id;
+        return "redirect:/user/product-index?category="+id+"&productPage="+currentProductPage;
     }
 
     @GetMapping("/product-details")

@@ -7,6 +7,7 @@ import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.services.CategoryService;
 import org.dsi.ecommerce.services.ProductService;
 import org.dsi.ecommerce.services.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,16 +48,30 @@ public class UserProductController {
     }
 
     @GetMapping("/product-index")
-    public String goProductIndex(@RequestParam("category") Optional<Integer> categoryId, Model model) {
+    public String goProductIndex(@RequestParam("category") Optional<Integer> categoryId,
+                                 @RequestParam("productPage") Optional<Integer> productPage,
+                                 Model model) {
 
+        int currentProductPage = productPage.orElse(1);
         int id = categoryId.orElse(1);
 
-        List<ProductDto> productDtos =
-                dtoConverter.convertToListOfProductDTO(productService.findProductsByCategoryId(id));
-        List<CategoryDto> categoryDtos =
-                dtoConverter.convertToListOfCategoryDTO(categoryService.getAllCategories());
+        Page<ProductDto> productDtos =
+                dtoConverter.convertToPageOfProductDTO(
+                        productService.findProductsByCategoryId(id, currentProductPage)
+                );
+
+        model.addAttribute("productDtos", productDtos);
+
+        List<CategoryDto> categoryDtos = dtoConverter.convertToListOfCategoryDTO(
+                categoryService.getAllCategories()
+        );
+
+        model.addAttribute("categoryId", id);
         model.addAttribute("productDtos", productDtos);
         model.addAttribute("categoryDtos", categoryDtos);
+        model.addAttribute("currentProductPage", currentProductPage);
+        model.addAttribute("totalProductPages", productDtos.getTotalPages());
+
         return "user/product_index";
     }
 

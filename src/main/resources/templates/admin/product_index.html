@@ -51,9 +51,6 @@
                             </div>
 
                             <div class="footer">
-<!--                                <button class="btn custom-bg text-white" th:onclick="add_to_cart(productDto.id, productDto.name, productDto.price)">ADD to Cart</button>-->
-<!--                                -->
-
                                 <a th:href="@{'/product-details?product=' + ${productDto.id} }"
                                    th:onclick="'window.location.href=\'/product-details?product=' + ${productDto.id} + '\''"
                                     <button class="btn custom-bg text-white">Details</button>
@@ -73,9 +70,13 @@
                 </div>
             </div>
 
+            <!--            Pagination Part-->
+            <div th:replace="/common/page::my_product_page"></div>
+
         </div>
 
     </div>
+
 <section th:replace="/common/modals::cartModal"></section>
 <section th:replace="/common/base::jsFragment"></section>
 </body>

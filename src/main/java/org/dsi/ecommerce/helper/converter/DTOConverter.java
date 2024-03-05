@@ -7,6 +7,8 @@ import org.dsi.ecommerce.models.Category;
 import org.dsi.ecommerce.models.Product;
 import org.dsi.ecommerce.models.User;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +35,22 @@ public class DTOConverter {
         return products.stream()
                 .map(this::convertToProductDTO)
                 .collect(Collectors.toList());
+    }
+
+    public Page<ProductDto> convertToPageOfProductDTO(Page<Product> productPage) {
+        List<ProductDto> productDtos = productPage.getContent().stream()
+                .map(this::convertToProductDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(productDtos, productPage.getPageable(), productPage.getTotalElements());
+    }
+
+    public Page<CategoryDto> convertToPageOfCategoryDTO(Page<Category> categoryPage) {
+        List<CategoryDto> categoryDtos = categoryPage.getContent().stream()
+                .map(this::convertToCategoryDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(categoryDtos, categoryPage.getPageable(), categoryPage.getTotalElements());
     }
 
     public CategoryDto convertToCategoryDTO(Category category) {

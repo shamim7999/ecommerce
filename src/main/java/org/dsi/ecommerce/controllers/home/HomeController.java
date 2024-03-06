@@ -90,9 +90,6 @@ public class HomeController {
 
         int currentProductPage = productPage.orElse(1);
         int id = categoryId.orElse(1);
-        System.out.println("--------------------");
-        System.out.println("CategoryID is: "+id);
-        System.out.println("--------------------");
 
         if(principal == null)
             return "redirect:/login";

@@ -3,6 +3,7 @@ package org.dsi.ecommerce.controllers.admin;
 import org.dsi.ecommerce.helper.CategoryDto;
 import org.dsi.ecommerce.helper.ProductDto;
 import org.dsi.ecommerce.helper.UserDto;
+import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.models.Product;
 import org.dsi.ecommerce.services.CategoryService;
 import org.dsi.ecommerce.services.ProductService;
@@ -24,10 +25,14 @@ public class AdminController {
 
     private final ProductService productService;
 
-    public AdminController(UserService userService, CategoryService categoryService, ProductService productService) {
+    private final DTOConverter dtoConverter;
+
+    public AdminController(UserService userService, CategoryService categoryService,
+                           ProductService productService, DTOConverter dtoConverter) {
         this.userService = userService;
         this.categoryService = categoryService;
         this.productService = productService;
+        this.dtoConverter = dtoConverter;
     }
 
     @ModelAttribute
@@ -42,8 +47,12 @@ public class AdminController {
 
     @GetMapping({"/", "/index"})
     public String goHome(Model model) {
+
+        List<UserDto> userDtos = dtoConverter.convertToListOfUserDTO(userService.getAllUsers());
+
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("products", productService.getAllProductsSortedByCategory());
+        model.addAttribute("userDtos", userDtos);
         return "admin/home";
     }
 }

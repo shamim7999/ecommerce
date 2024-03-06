@@ -22,43 +22,49 @@
         </div>
         <div class="row mt-3">
 
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="container text-center">
-                            <img class="img-fluid" src="/image/group.png" alt="No Image..">
+            <div class="flex-items">
+                <div class="col-md-4">
+                    <a th:href="@{/admin/user-lists}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <img class="img-fluid" src="/image/group.png" alt="No Image..">
+                                </div>
+                                <h1 th:text="${userDtos.size()}">1111</h1>
+                                <h1>Users</h1>
+                            </div>
                         </div>
-                        <h1>1111</h1>
-                        <h1>Users</h1>
-                    </div>
-                </div>
-            </div>
+                    </a>
 
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="container text-center">
-                            <img class="img-fluid" src="/image/categorization.png" alt="No Image..">
-                        </div>
-                        <h1 th:text="${categories.size()}">2222</h1>
-                        <h1>Categories</h1>
-                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <a th:href="@{/admin/product-index}">
+                <div class="col-md-4">
+                    <a href="#"></a>
                     <div class="card">
                         <div class="card-body">
                             <div class="container text-center">
-                                <img class="img-fluid" src="/image/products.png" alt="No Image..">
+                                <img class="img-fluid" src="/image/categorization.png" alt="No Image..">
                             </div>
-                            <h1 th:text="${products.size()}">3333</h1>
-                            <h1>Products</h1>
+                            <h1 th:text="${categories.size()}">2222</h1>
+                            <h1>Categories</h1>
                         </div>
                     </div>
-                </a>
-            </div>
+                </div>
+
+                <div class="col-md-4">
+                    <a th:href="@{/admin/product-index}">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <img class="img-fluid" src="/image/products.png" alt="No Image..">
+                                </div>
+                                <h1 th:text="${products.size()}">3333</h1>
+                                <h1>Products</h1>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
 
         </div>
 
@@ -87,7 +93,7 @@
             </div>
 
         </div>
-
+        </div>
     </div>
 </div>
 

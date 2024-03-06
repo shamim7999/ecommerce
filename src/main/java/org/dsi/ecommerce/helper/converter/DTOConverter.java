@@ -25,6 +25,12 @@ public class DTOConverter {
         return modelMapper.map(user, UserDto.class);
     }
 
+    public List<UserDto> convertToListOfUserDTO(List<User> users) {
+        return users.stream()
+                .map(this::convertToUserDTO)
+                .collect(Collectors.toList());
+    }
+
     public ProductDto convertToProductDTO(Product product) {
         ProductDto productDto = modelMapper.map(product, ProductDto.class);
         productDto.setCategoryDto(modelMapper.map(product.getCategory(), CategoryDto.class));

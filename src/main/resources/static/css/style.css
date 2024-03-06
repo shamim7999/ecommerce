@@ -72,9 +72,14 @@ textarea {
 }
 
 .homeLinks a {
-    display: inline;
     text-decoration: none;
     color: black;
+}
+
+.homeLinks .flex-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* The snackbar - position it at the bottom and in the middle of the screen */

@@ -38,6 +38,8 @@ public class Product {
     @Column(nullable = false)
     private int discount;
 
+    private boolean status=true;
+
     @NotNull
     @Column(nullable = false)
     private int quantity;

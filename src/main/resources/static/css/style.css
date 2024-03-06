@@ -122,3 +122,11 @@ textarea {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+.product-suspend {
+    position: relative;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+}

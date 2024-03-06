@@ -46,7 +46,16 @@ public class ProductService {
 
     public Page<Product> findProductsByCategoryId(int categoryId, int currentPage) {
         Pageable pageable = PageRequest.of(currentPage-1, 3);
-        return productRepository.findAllByCategory_Id(categoryId, pageable)
+        return productRepository.findAllByCategory_Id(categoryId,pageable)
+                .map(product -> {
+                    product.setDescription(ShorterSentence.get10Words(product.getDescription()));
+                    return product;
+                });
+    }
+
+    public Page<Product> findProductsByStatusSetToTrue(int categoryId, int currentPage) {
+        Pageable pageable = PageRequest.of(currentPage-1, 3);
+        return productRepository.findAllByCategory_IdAndStatus(categoryId, true, pageable)
                 .map(product -> {
                     product.setDescription(ShorterSentence.get10Words(product.getDescription()));
                     return product;
@@ -61,4 +70,11 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(() -> new Exception("Resource Not Found"));
     }
 
+    public void softDeleteProduct(int productId) throws Exception {
+        productRepository.softDelete(productId);
+    }
+
+    public void enableProduct(int productId) throws Exception {
+        productRepository.enableProduct(productId);
+    }
 }

@@ -57,7 +57,7 @@ public class UserProductController {
 
         Page<ProductDto> productDtos =
                 dtoConverter.convertToPageOfProductDTO(
-                        productService.findProductsByCategoryId(id, currentProductPage)
+                        productService.findProductsByStatusSetToTrue(id, currentProductPage)
                 );
 
         model.addAttribute("productDtos", productDtos);

@@ -32,7 +32,6 @@ function add_to_cart(pId, pName, pPrice) {
     }
     updateCart();
 }
-
 function updateCart() {
     let cartString = localStorage.getItem("cart");
     let cart = JSON.parse(cartString);

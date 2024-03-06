@@ -95,30 +95,8 @@
                    th:data-id="${productDto.categoryDto.id}"
                    th:onclick="'window.location.href=\'/all-products?category=' + ${productDto.categoryDto.id} + '\''"
                 >
-                    <button style="background: #407b43;" type="button" class="btn">See More</button>
+                    <button type="button" class="btn">See More</button>
                 </a>
-
-                <th:block th:if="${userDto.role == 'ROLE_ADMIN'}">
-                    <a href="#">
-                        <button style="background: #673ab7;" type="button" class="btn update"
-                                data-bs-toggle="modal" data-bs-target="#update-product-modal"
-                        >Update</button>
-                    </a>
-
-                    <a th:if="${productDto.status == true}"  th:href="@{'/admin/soft-delete-product?product=' + ${productDto.id}}"
-                       th:data-id="${productDto.id}"
-                       th:onclick="'window.location.href=\'/admin/soft-delete-product?product=' + ${productDto.id} + '\''"
-                    >
-                        <button type="button" class="btn delete">Suspend</button>
-                    </a>
-
-                    <a th:if="${productDto.status == false}"  th:href="@{'/admin/enable-product?product=' + ${productDto.id}}"
-                       th:data-id="${productDto.id}"
-                       th:onclick="'window.location.href=\'/admin/enable-product?product=' + ${productDto.id} + '\''"
-                    >
-                        <button style="background: #928240;" type="button" class="btn delete">Enable</button>
-                    </a>
-                </th:block>
 
             </div>
 
@@ -144,62 +122,6 @@
     </div>
 </div>
 
-
-<!--Modal For Product-->
-
-<div th:fragment="productModal" class="modal fade" id="update-product-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header custom-bg text-white">
-                <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <form th:action="@{'/admin/update-product?product=' + ${productDto.id}}" method="post" enctype="multipart/form-data">
-                    <div class="form-group mb-3">
-                        <label for="name">Enter Name</label>
-                        <input th:value="${productDto.name}" id="name" type="text" class="form-control" name="name" placeholder="Enter name.." >
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Enter Description</label>
-                        <textarea th:text="${productDto.description}" id="description" class="form-control" name="description" placeholder="Enter Description.." >
-
-                        </textarea>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="price">Enter Price</label>
-                        <input th:value="${productDto.price}" id="price" type="number" class="form-control" name="price" placeholder="Enter Price.." >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="discount">Enter Discount</label>
-                        <input th:value="${productDto.discount}" id="discount" type="number" class="form-control" name="discount" placeholder="Enter Discount.." >
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="quantity">Enter Quantity</label>
-                        <input th:value="${productDto.quantity}" id="quantity" type="number" class="form-control" name="quantity" placeholder="Enter quantity.." >
-                    </div>
-                    <div class="form-group">
-                        <label for="categories">Select Category</label>
-                        <select name="categoryId" class="form-control" id="categories">
-                            <option th:each="category : ${categoryDtos}"
-                                    th:value="${category.id}" th:text="${category.title}">
-                            </option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="file" name="image" class="form-control-file">
-                    </div>
-                    <div class="container text-center">
-                        <button class="btn btn-outline-success">Add</button>
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="/js/product_detail_style.js"></script>
 <section th:replace="/common/modals::cartModal"></section>

@@ -99,6 +99,36 @@ public class ProductController {
 
         model.addAttribute("productDto",
                 dtoConverter.convertToProductDTO(productService.getProductById(id)));
+        List<CategoryDto> categoryDtos = dtoConverter.convertToListOfCategoryDTO(
+                categoryService.getAllCategories()
+        );
+        model.addAttribute("categoryDtos", categoryDtos);
         return "common/product_details";
+    }
+
+    @GetMapping("/soft-delete-product")
+    public String softDeleteProduct(@RequestParam("product") Optional<Integer> productId) throws Exception {
+        int id = productId.orElse(0);
+        productService.softDeleteProduct(id);
+        return "redirect:/product-details?product="+id;
+    }
+
+    @GetMapping("/enable-product")
+    public String enableProduct(@RequestParam("product") Optional<Integer> productId) throws Exception {
+        int id = productId.orElse(0);
+        productService.enableProduct(id);
+        return "redirect:/product-details?product="+id;
+    }
+
+    @PostMapping("/update-product")
+    public String updateProduct(@Valid  @ModelAttribute Product product,
+                             @RequestParam int categoryId,
+                             @RequestParam(name = "image", required = false) MultipartFile file,
+                             RedirectAttributes redirectAttributes) throws Exception{
+        Category category = categoryService.findByCategoryId(categoryId);
+        productService.createProduct(file, product, category);
+        redirectAttributes.addFlashAttribute("message", "Product Updated Successfully!!");
+        redirectAttributes.addFlashAttribute("type", "alert-success");
+        return "redirect:/product-details?product="+product.getId();
     }
 }

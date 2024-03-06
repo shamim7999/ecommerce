@@ -40,7 +40,7 @@
                 <!-- If productDtos is not empty, iterate through each product -->
                 <div class="col-md-4 mb-4" th:each="productDto : ${productDtos}">
                     <div class="card-columns">
-                        <div class="card text-center custom-size product-card">
+                        <div class="card text-center custom-size product-card" th:classappend="${productDto.status == false ? 'product-suspend' : ''}">
                             <a th:href="@{'/admin/product-details?product=' + ${productDto.id}}">
                                 <img class="mx-auto d-block" style="max-height: 200px; max-width: 180px; width: auto;"
                                      th:src="@{'/image/'+ ${productDto.photo}}" alt="No Photo..">
@@ -71,7 +71,9 @@
             </div>
 
             <!--            Pagination Part-->
-            <div th:replace="/common/page::my_product_page"></div>
+            <div class="container text-center">
+                <div th:replace="/common/page::my_product_page"></div>
+            </div>
 
         </div>
 

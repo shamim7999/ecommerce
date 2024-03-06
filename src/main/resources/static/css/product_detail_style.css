@@ -179,6 +179,10 @@ img{
     color: #fff;
 }
 
+.purchase-info a .update {
+    background: #256eff;
+}
+
 @media screen and (min-width: 992px){
     .card{
         display: grid;

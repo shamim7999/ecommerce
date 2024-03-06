@@ -26,6 +26,7 @@ public class ProductDto {
 
     private int discount;
 
+    private boolean status;
 
     private int quantity;
 

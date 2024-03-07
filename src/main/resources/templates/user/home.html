@@ -23,15 +23,17 @@
         <div class="row mt-3">
 
             <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="container text-center">
-                            <img class="img-fluid" src="/image/group.png" alt="No Image..">
+                <a th:href="@{/user/user-lists}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container text-center">
+                                <img class="img-fluid" src="/image/group.png" alt="No Image..">
+                            </div>
+                            <h1 th:text="${userDtos.size()}">1111</h1>
+                            <h1>Users</h1>
                         </div>
-                        <h1>1111</h1>
-                        <h1>Active Users</h1>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-md-4">

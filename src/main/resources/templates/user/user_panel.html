@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:replace="/common/base::bootstrapCssFragment">
+    <link th:replace="/common/base::cssFragment">
+    <link th:replace="/common/base::fontAwesomeFragment">
+    <title>Title</title>
+</head>
+<body>
+<section th:replace="/common/base::navbarFragment"></section>
+<table class="table table-success table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Image</th>
+        <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Use Thymeleaf iteration to loop through userDtos -->
+    <tr th:each="userDto : ${userDtos}">
+        <td th:text="${userDto.id}">1</td>
+        <td th:text="${userDto.name}">Mark</td>
+        <td><a th:href="@{'/customer-details?customer=' + ${userDto.id}}" th:text="${userDto.email}"></a></td>
+        <td th:text="${userDto.phone}">@mdo</td>
+        <td th:text="${userDto.pic}">Image</td>
+        <td th:text="${userDto.role}">Role</td>
+    </tr>
+    </tbody>
+</table>
+<section th:replace="/common/modals::cartModal"></section>
+<section th:replace="/common/base::jsFragment"></section>
+</body>
+</html>

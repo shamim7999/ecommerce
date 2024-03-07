@@ -37,6 +37,15 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public void updateProduct(MultipartFile file, Product product, Category category) throws IOException {
+        if(file != null && !file.isEmpty()) {
+            product.setPhoto(file.getOriginalFilename());
+            ImageUpload.uploadImage(file);
+        }
+        product.setCategory(category);
+        productRepository.save(product);
+    }
+
     public List<Product> findAllProducts() {
         return productRepository.findAll()
                 .stream()
@@ -67,7 +76,8 @@ public class ProductService {
     }
 
     public Product getProductById(int id) throws Exception {
-        return productRepository.findById(id).orElseThrow(() -> new Exception("Resource Not Found"));
+        return productRepository.findById(id)
+                .orElseThrow(() -> new Exception("Product with ID " + id + " not found"));
     }
 
     public void softDeleteProduct(int productId) throws Exception {

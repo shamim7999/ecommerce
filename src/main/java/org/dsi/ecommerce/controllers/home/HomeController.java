@@ -1,6 +1,7 @@
 package org.dsi.ecommerce.controllers.home;
 
 import org.dsi.ecommerce.helper.UserDto;
+import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.models.User;
 import org.dsi.ecommerce.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,11 @@ import java.util.Optional;
 public class HomeController {
 
     private final UserService userService;
+    private final DTOConverter dtoConverter;
 
-    public HomeController(UserService userService) {
+    public HomeController(UserService userService, DTOConverter dtoConverter) {
         this.userService = userService;
+        this.dtoConverter = dtoConverter;
     }
 
     @ModelAttribute
@@ -35,18 +38,6 @@ public class HomeController {
         return "common/page";
     }
 
-//    @GetMapping({"/index", "/"})
-//    public String sendIndex(Model model, Principal principal) {
-//        if(principal == null)
-//            return "redirect:/login";
-//
-//        UserDto userDto = userService.getUserDetails(principal);
-//        model.addAttribute("userDto", userDto);
-//
-//        if(userDto.getRole().equals("ROLE_ADMIN") )
-//            return "redirect:/admin/index";
-//        return "redirect:/user/index";
-//    }
 
     @GetMapping({"/index", "/"})
     public String sendIndex(@ModelAttribute UserDto userDto, Principal principal) {
@@ -113,5 +104,13 @@ public class HomeController {
             return "redirect:/admin/product-details?product="+id;
         }
         return "redirect:/user/product-details?product="+id;
+    }
+
+    @GetMapping("/customer-details")
+    public String userDetails(@RequestParam("customer") Optional<Integer> customerId, Model model) throws Exception {
+        int id = customerId.orElseThrow(() -> new Exception("Null Id provided."));
+        UserDto userDto = dtoConverter.convertToUserDTO(userService.getUserById(id));
+        model.addAttribute("customerDto", userDto);
+        return "common/customer_details";
     }
 }

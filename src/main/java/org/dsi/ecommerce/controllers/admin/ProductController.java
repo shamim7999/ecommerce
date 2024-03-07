@@ -126,7 +126,7 @@ public class ProductController {
                              @RequestParam(name = "image", required = false) MultipartFile file,
                              RedirectAttributes redirectAttributes) throws Exception{
         Category category = categoryService.findByCategoryId(categoryId);
-        productService.createProduct(file, product, category);
+        productService.updateProduct(file, product, category);
         redirectAttributes.addFlashAttribute("message", "Product Updated Successfully!!");
         redirectAttributes.addFlashAttribute("type", "alert-success");
         return "redirect:/product-details?product="+product.getId();

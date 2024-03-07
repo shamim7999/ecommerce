@@ -77,7 +77,7 @@
 
                 <ul>
                     <li>Color: <span>Black</span></li>
-                    <li>Available: <span>in stock</span></li>
+                    <li>Available: <span th:text="${productDto.quantity + ' in stock'}">in stock</span></li>
                     <li>Category: <span th:text="${productDto.categoryDto.title}">Shoes</span></li>
                     <li>Shipping Area: <span>All over the world</span></li>
                     <li>Shipping Fee: <span>Free</span></li>

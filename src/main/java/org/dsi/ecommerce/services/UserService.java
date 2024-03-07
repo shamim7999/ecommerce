@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -45,8 +46,19 @@ public class UserService {
         return userDto;
     }
 
+    public User getUserById(int userId) throws Exception {
+        return userRepository.findById(userId).orElseThrow(() -> new Exception("User not Found"));
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    public void softDelete(int userId) throws Exception {
+        userRepository.softDelete(userId);
+    }
+
+    public void enableUser(int userId) throws Exception {
+        userRepository.enableUser(userId);
+    }
 }

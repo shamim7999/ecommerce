@@ -9,35 +9,49 @@
 </head>
 <body>
 <section th:replace="/common/base::navbarFragment"></section>
-<table class="table table-striped">
+<table class="table table-success table-striped">
     <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-    </tr>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Image</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+        </tr>
     </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-    </tr>
-    </tbody>
+        <tbody>
+        <!-- Use Thymeleaf iteration to loop through userDtos -->
+        <tr th:each="userDto : ${userDtos}">
+            <td th:text="${userDto.id}">1</td>
+            <td th:text="${userDto.name}">Mark</td>
+            <td><a th:href="@{'/customer-details?customer=' + ${userDto.id}}" th:text="${userDto.email}"></a></td>
+            <td th:text="${userDto.phone}">@mdo</td>
+            <td th:text="${userDto.pic}">Image</td>
+            <td th:text="${userDto.role}">Role</td>
+            <td>
+
+                <th:block th:if="${userDto.role == 'ROLE_USER'}">
+
+                    <a th:if="${userDto.enabled == true}"  th:href="@{'/admin/soft-delete-user?user=' + ${userDto.id}}"
+                       th:data-id="${userDto.id}"
+                       th:onclick="'window.location.href=\'/admin/soft-delete-user?user=' + ${userDto.id} + '\''"
+                    >
+                        <button type="button" class="btn btn-danger">Suspend</button>
+                    </a>
+
+                    <a th:if="${userDto.enabled == false}"  th:href="@{'/admin/enable-user?user=' + ${userDto.id}}"
+                       th:data-id="${userDto.id}"
+                       th:onclick="'window.location.href=\'/admin/enable-user?user=' + ${userDto.id} + '\''"
+                    >
+                        <button type="button" class="btn btn-success">Enable</button>
+                    </a>
+                </th:block>
+
+            </td>
+        </tr>
+        </tbody>
 </table>
 <section th:replace="/common/modals::cartModal"></section>
 <section th:replace="/common/base::jsFragment"></section>

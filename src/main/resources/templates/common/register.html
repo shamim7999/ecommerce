@@ -21,26 +21,60 @@
 
               <div class="card-body">
                   <h1> Register Here !! </h1>
-                <form th:action="@{/processRegistration}" method="post">
+                <form th:object="${user}" th:action="@{/processRegistration}" method="post">
 
                   <div class="form-group">
                     <label for="name">User Name</label>
-                    <input class="form-control" type="text" id="name" name="name" aria-describedby="emailHelp">
+                    <input class="form-control"
+                           type="text" id="name"
+                           name="name"
+                           aria-describedby="emailHelp"
+                           th:value="${user.name}"
+                           th:classappend="${(#fields.hasErrors('name') or user.name == null) ? 'is-invalid' : 'is-valid'}"
+                    >
+                    <div th:each="e : ${#fields.errors('name')}" th:text="${e}" class="invalid-feedback"></div>
+                    <div th:if="${(not #fields.hasErrors('name') and user.name != null) }" class="valid-feedback">
+                          Looks Good
+                    </div>
                   </div>
 
                   <div class="form-group">
                     <label for="email">User Email</label>
-                    <input class="form-control" type="email" id="email" name="email" aria-describedby="emailHelp">
+                    <input class="form-control" type="email" id="email"
+                           name="email" aria-describedby="emailHelp"
+                           th:value="${user.email}"
+                           th:classappend="${(#fields.hasErrors('email') or user.email == null) ? 'is-invalid' : 'is-valid'}"
+                    >
+                      <div th:each="e : ${#fields.errors('email')}" th:text="${e}" class="invalid-feedback"></div>
+                      <div th:if="${(not #fields.hasErrors('email') and user.email != null) }" class="valid-feedback">
+                          Looks Good
+                      </div>
                   </div>
 
                   <div class="form-group">
                     <label for="password">User Password</label>
-                    <input class="form-control" type="password" id="password" name="password" aria-describedby="emailHelp">
+                    <input class="form-control" type="password" id="password"
+                           th:value="${user.password}"
+                           th:classappend="${(#fields.hasErrors('password') or user.password == null) ? 'is-invalid' : 'is-valid'}"
+                           name="password" aria-describedby="emailHelp"
+                    >
+                      <div th:each="e : ${#fields.errors('password')}" th:text="${e}" class="invalid-feedback"></div>
+                      <div th:if="${(not #fields.hasErrors('password') and user.password != null) }" class="valid-feedback">
+                          Looks Good
+                      </div>
                   </div>
 
                   <div class="form-group">
                     <label for="phone">User Phone</label>
-                    <input class="form-control" type="text" id="phone" name="phone" aria-describedby="emailHelp">
+                    <input class="form-control" type="text" id="phone"
+                           name="phone" aria-describedby="emailHelp"
+                           th:value="${user.phone}"
+                           th:classappend="${(#fields.hasErrors('phone') or user.phone == null) ? 'is-invalid' : 'is-valid'}"
+                    >
+                      <div th:each="e : ${#fields.errors('phone')}" th:text="${e}" class="invalid-feedback"></div>
+                      <div th:if="${(not #fields.hasErrors('phone') and user.phone != null) }" class="valid-feedback">
+                          Looks Good
+                      </div>
                   </div>
 
                   <div class="form-group">
@@ -48,9 +82,15 @@
                     <textarea class="form-control"
                               id="address" name="address" aria-describedby="emailHelp"
                               placeholder="Enter your Address"
+                              th:text="${user.address}"
+                              th:classappend="${(#fields.hasErrors('address') or user.address == null) ? 'is-invalid' : 'is-valid'}"
                     >
 
                     </textarea>
+                      <div th:each="e : ${#fields.errors('address')}" th:text="${e}" class="invalid-feedback"></div>
+                      <div th:if="${(not #fields.hasErrors('address') and user.address != null) }" class="valid-feedback">
+                          Looks Good
+                      </div>
 
                   </div>
                   <div class="text-center buttons">

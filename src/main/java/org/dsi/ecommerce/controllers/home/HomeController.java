@@ -1,11 +1,14 @@
 package org.dsi.ecommerce.controllers.home;
 
+import jakarta.validation.Valid;
 import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.models.User;
 import org.dsi.ecommerce.services.UserService;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -56,17 +59,40 @@ public class HomeController {
     public String registerHandler(Model model) {
 
         model.addAttribute("title", "Sign up");
+        model.addAttribute("user", new User());
         return "common/register";
 
     }
 
     @PostMapping("/processRegistration")
-    public String processRegistration(@ModelAttribute User user, RedirectAttributes redirectAttributes) throws Exception {
-        userService.createUser(user);
-        redirectAttributes.addFlashAttribute("message", "Account Created Successfully!!");
-        redirectAttributes.addFlashAttribute("type", "alert-success");
-        return "redirect:/register";
+    public String processRegistration(@Valid @ModelAttribute User user, BindingResult result,
+                                      RedirectAttributes redirectAttributes) throws Exception {
+
+        try {
+            if(result.hasErrors()) {
+                return "common/register";
+            }
+
+            userService.createUser(user);
+            redirectAttributes.addFlashAttribute("message", "Account Created Successfully!!");
+            redirectAttributes.addFlashAttribute("type", "alert-success");
+            return "redirect:/register";
+        } catch (DataAccessException ex) {
+            // Log the exception or handle it as needed
+            ex.printStackTrace(); // Or use a logging framework like SLF4J
+            result.rejectValue("email", "", "This email already exists.");
+            redirectAttributes.addFlashAttribute("message", "Error creating account: " + ex.getMessage());
+            redirectAttributes.addFlashAttribute("type", "alert-danger");
+            return "redirect:/register";
+        } catch (Exception ex) {
+            // Handle other exceptions if needed
+            ex.printStackTrace(); // Or use a logging framework like SLF4J
+            redirectAttributes.addFlashAttribute("message", "Unexpected error: " + ex.getMessage());
+            redirectAttributes.addFlashAttribute("type", "alert-danger");
+            return "redirect:/register";
+        }
     }
+
 
     @GetMapping("/login")
     public String login(Model model) {

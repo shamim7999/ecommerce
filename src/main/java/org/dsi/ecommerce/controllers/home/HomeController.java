@@ -3,7 +3,9 @@ package org.dsi.ecommerce.controllers.home;
 import jakarta.validation.Valid;
 import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
+import org.dsi.ecommerce.models.ConfirmationToken;
 import org.dsi.ecommerce.models.User;
+import org.dsi.ecommerce.services.ConfirmationTokenService;
 import org.dsi.ecommerce.services.UserService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -19,10 +21,14 @@ import java.util.Optional;
 public class HomeController {
 
     private final UserService userService;
+    private final ConfirmationTokenService confirmationTokenService;
+
     private final DTOConverter dtoConverter;
 
-    public HomeController(UserService userService, DTOConverter dtoConverter) {
+    public HomeController(UserService userService, ConfirmationTokenService confirmationTokenService,
+                          DTOConverter dtoConverter) {
         this.userService = userService;
+        this.confirmationTokenService = confirmationTokenService;
         this.dtoConverter = dtoConverter;
     }
 
@@ -72,25 +78,32 @@ public class HomeController {
             if(result.hasErrors()) {
                 return "common/register";
             }
-
             userService.createUser(user);
             redirectAttributes.addFlashAttribute("message", "Account Created Successfully!!");
             redirectAttributes.addFlashAttribute("type", "alert-success");
             return "redirect:/register";
         } catch (DataAccessException ex) {
-            // Log the exception or handle it as needed
-            ex.printStackTrace(); // Or use a logging framework like SLF4J
             result.rejectValue("email", "", "This email already exists.");
             redirectAttributes.addFlashAttribute("message", "Error creating account: " + ex.getMessage());
             redirectAttributes.addFlashAttribute("type", "alert-danger");
             return "redirect:/register";
-        } catch (Exception ex) {
-            // Handle other exceptions if needed
-            ex.printStackTrace(); // Or use a logging framework like SLF4J
-            redirectAttributes.addFlashAttribute("message", "Unexpected error: " + ex.getMessage());
-            redirectAttributes.addFlashAttribute("type", "alert-danger");
-            return "redirect:/register";
         }
+    }
+
+
+    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public String confirmUserAccount(@RequestParam("token") String confirmationToken) {
+        ConfirmationToken token = confirmationTokenService.findByConfirmationToken(confirmationToken);
+
+        if(token != null)
+        {
+            User user = userService.findByEmail(token.getUser().getEmail());
+            user.setEnabled(true);
+            userService.saveUpdatedUser(user);
+            return "Account is verified.";
+        }
+        return "Invalid link, or the link is broken";
     }
 
 

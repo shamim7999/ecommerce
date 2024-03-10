@@ -20,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query("UPDATE User u SET u.isEnabled = true WHERE u.id = :userId")
     public void enableUser(int userId);
+
+    public User findByEmailIgnoreCase(String email);
 }

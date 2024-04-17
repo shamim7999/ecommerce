@@ -62,6 +62,15 @@ public class ProductService {
                 });
     }
 
+    public Page<Product> findProductsBySearch(String query, int currentPage) {
+        Pageable pageable = PageRequest.of(currentPage-1, 3);
+        return productRepository.findProductsBySearch(query,pageable)
+                .map(product -> {
+                    product.setDescription(ShorterSentence.get10Words(product.getDescription()));
+                    return product;
+                });
+    }
+
     public Page<Product> findProductsByStatusSetToTrue(int categoryId, int currentPage) {
         Pageable pageable = PageRequest.of(currentPage-1, 3);
         return productRepository.findAllByCategory_IdAndStatus(categoryId, true, pageable)

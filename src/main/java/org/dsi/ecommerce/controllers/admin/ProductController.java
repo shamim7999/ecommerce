@@ -62,6 +62,28 @@ public class ProductController {
         return "redirect:/admin/index";
     }
 
+
+    @GetMapping("product-index/queries")
+    public String goProductIndexBySearch(@RequestParam(value = "query", required = false) Optional<String> query,
+                                         @RequestParam("page") Optional<Integer> productPage,
+                                         Model model) {
+
+        int currentPage = productPage.orElse(1);
+        String myQuery = query.orElse("").trim();
+
+        Page<ProductDto> productDtos = dtoConverter.convertToPageOfProductDTO(
+                productService.findProductsBySearch(myQuery, currentPage)
+        );
+
+        System.out.println("HKDSJKDHSJKDHKSJHDKS: "+productDtos);
+
+        model.addAttribute("productDtos", productDtos);
+        model.addAttribute("showQuery", true);
+
+        return "admin/product_index";
+    }
+
+
     @GetMapping("/product-index")
     public String goProductIndex(@RequestParam("category") Optional<Integer> categoryId,
                                  @RequestParam("productPage") Optional<Integer> productPage,
@@ -84,6 +106,7 @@ public class ProductController {
         model.addAttribute("categoryDtos", categoryDtos);
         model.addAttribute("currentProductPage", currentProductPage);
         model.addAttribute("totalProductPages", productDtos.getTotalPages());
+        model.addAttribute("showQuery", false);
 
         return "admin/product_index";
     }

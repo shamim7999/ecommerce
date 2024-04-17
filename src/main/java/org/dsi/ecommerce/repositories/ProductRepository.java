@@ -14,6 +14,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Page<Product> findAllByCategory_Id(int categoryId, Pageable pageable);
 
+    @Query("SELECT p FROM Product p WHERE (LOWER(p.name)) LIKE LOWER(CONCAT('%', :query, '%'))")
+    Page<Product> findProductsBySearch(String query, Pageable pageable);
+
     @Transactional
     @Modifying
     @Query("UPDATE Product p SET p.status = false WHERE p.id = :productId")

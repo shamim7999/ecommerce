@@ -9,25 +9,38 @@
         <nav aria-label="Page Navigation Example" th:fragment="my_product_page">
             <ul class="pagination">
                 <li th:classappend="${(currentProductPage > 1) ? '' : 'disabled'}" class="page-item">
-                    <a class="page-link" th:if="${userDto.role == 'ROLE_ADMIN'}"
-                       th:href="@{'/admin/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage - 1} }">Prev</a>
-                    <a class="page-link" th:if="${userDto.role == 'ROLE_USER'}"
-                       th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage - 1} }">Prev</a>
+                    <span th:if="${userDto.role == 'ROLE_ADMIN'}">
+                        <a class="page-link"
+                           th:href="@{'/admin/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage - 1} }">Prev</a>
+                    </span>
+                    <span th:if="${userDto.role == 'ROLE_USER'}">
+                        <a class="page-link"
+                           th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage - 1} }">Prev</a>
+                    </span>
 
                 </li>
 
                 <li th:each="i : ${#numbers.sequence(1, totalProductPages)}" th:classappend="${currentProductPage == i ? 'active':''}" class="page-item">
 
-                    <a class="page-link" th:if="${i > 0 && userDto.role == 'ROLE_ADMIN'}" th:href="@{'/admin/product-index?category=' + ${categoryId} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
-                    <a class="page-link" th:if="${i > 0 && userDto.role == 'ROLE_USER'}" th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
+                    <span th:if="${i > 0 && userDto.role == 'ROLE_ADMIN'}">
+                        <a class="page-link"  th:href="@{'/admin/product-index?category=' + ${categoryId} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
+                    </span>
+                    <span th:if="${i > 0 && userDto.role == 'ROLE_USER'}">
+                        <a class="page-link" th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
+                    </span>
+
 
                 </li>
 
                 <li th:classappend="${currentProductPage  >= totalProductPages ? 'disabled':''}" class="page-item">
-                    <a class="page-link" th:if="${userDto.role == 'ROLE_ADMIN'}"
-                       th:href="@{'/admin/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage + 1} }">Next</a>
-                    <a class="page-link" th:if="${userDto.role == 'ROLE_USER'}"
-                       th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage + 1} }">Next</a>
+                    <span th:if="${userDto.role == 'ROLE_ADMIN'}">
+                        <a class="page-link"
+                           th:href="@{'/admin/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage + 1} }">Next</a>
+                    </span>
+                    <span th:if="${userDto.role == 'ROLE_USER'}">
+                        <a class="page-link"
+                           th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage + 1} }">Next</a>
+                    </span>
                 </li>
 
             </ul>

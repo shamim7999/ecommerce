@@ -32,9 +32,13 @@ textarea {
     text-transform: uppercase;
 }
 
+.card {
+    transition: all ease 0.8s;
+}
+
 .card:hover {
     box-shadow: 2px 2px rgba(0, 0, 0, 0.4);
-    background: #f5efef;
+    background: #e2e2e2;
     cursor: pointer;
 }
 
@@ -42,6 +46,11 @@ textarea {
     font-size: 13px!important;
     font-style: italic!important;
 }
+
+.product-card {
+    transition: all ease 0.8s;
+}
+
 .product-card:hover {
     background: #e2e2e2;
     cursor: pointer;

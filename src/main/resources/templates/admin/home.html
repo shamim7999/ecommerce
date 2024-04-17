@@ -6,22 +6,34 @@
     <link th:replace="/common/base::cssFragment">
     <link th:replace="/common/base::fontAwesomeFragment">
     <title>Title</title>
+    <style>
+        .card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
 <section th:replace="/common/base::navbarFragment"></section>
 
 <div th:fragment="hello" th:object="${userDto}">
-
     <div class="container homeLinks">
-        <!--                        alert message-->
+        <!-- Alert message -->
         <div th:if="${message}" th:classappend="${type}" class="alert mt-3" role="alert">
             <p th:text="${message}"></p>
         </div>
         <div class="text-center mt-4">
-            <h1 th:text=" 'Hello Admin' ">Hello World!</h1>
+            <h1 th:text="'Hello Admin'">Hello World!</h1>
         </div>
         <div class="row mt-3">
-
             <div class="flex-items">
                 <div class="col-md-4">
                     <a th:href="@{/admin/user-lists}">
@@ -35,9 +47,7 @@
                             </div>
                         </div>
                     </a>
-
                 </div>
-
                 <div class="col-md-4">
                     <a href="#"></a>
                     <div class="card">
@@ -50,7 +60,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <a th:href="@{/admin/product-index}">
                         <div class="card">
@@ -64,12 +73,9 @@
                         </div>
                     </a>
                 </div>
-
-
+            </div>
         </div>
-
         <div class="row mt-3">
-
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body" data-bs-toggle="modal" data-bs-target="#add-category-modal">
@@ -80,7 +86,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body" data-bs-toggle="modal" data-bs-target="#add-product-modal">
@@ -91,15 +96,9 @@
                     </div>
                 </div>
             </div>
-
-        </div>
         </div>
     </div>
 </div>
-
-
-
-
 <section th:replace="/common/modals::allModals"></section>
 <section th:replace="/common/base::jsFragment"></section>
 </body>

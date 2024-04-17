@@ -6,6 +6,11 @@
     margin: 0;
     font-family: 'Open Sans', sans-serif;
 }
+
+a {
+    text-decoration: none;
+}
+
 body{
     line-height: 1.5;
 }

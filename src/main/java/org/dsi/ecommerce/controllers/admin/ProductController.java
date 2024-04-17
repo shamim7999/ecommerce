@@ -65,20 +65,23 @@ public class ProductController {
 
     @GetMapping("product-index/queries")
     public String goProductIndexBySearch(@RequestParam(value = "query", required = false) Optional<String> query,
-                                         @RequestParam("page") Optional<Integer> productPage,
+                                         @RequestParam("productPage") Optional<Integer> productPage,
                                          Model model) {
 
-        int currentPage = productPage.orElse(1);
+        int currentProductPage = productPage.orElse(1);
         String myQuery = query.orElse("").trim();
 
         Page<ProductDto> productDtos = dtoConverter.convertToPageOfProductDTO(
-                productService.findProductsBySearch(myQuery, currentPage)
+                productService.findProductsBySearch(myQuery, currentProductPage)
         );
 
         System.out.println("HKDSJKDHSJKDHKSJHDKS: "+productDtos);
 
         model.addAttribute("productDtos", productDtos);
         model.addAttribute("showQuery", true);
+        model.addAttribute("myQuery", myQuery);
+        model.addAttribute("currentProductPage", currentProductPage);
+        model.addAttribute("totalProductPages", productDtos.getTotalPages());
 
         return "admin/product_index";
     }

@@ -45,8 +45,8 @@
                     </ul>
                 </li>
 
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search by Title ... " aria-label="Search">
+                <form class="d-flex" th:action="@{'/admin/product-index/queries'}" method="get">
+                    <input class="form-control me-2" name="query" type="search" placeholder="Search by Title ... " aria-label="Search">
                     <button class="btn btn-success" type="submit">Search</button>
                 </form>
             </ul>

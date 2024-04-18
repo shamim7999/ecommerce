@@ -2,6 +2,7 @@ package org.dsi.ecommerce.controllers.admin;
 
 import jakarta.validation.Valid;
 import org.dsi.ecommerce.helper.CategoryDto;
+import org.dsi.ecommerce.helper.Message;
 import org.dsi.ecommerce.helper.ProductDto;
 import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
@@ -13,6 +14,7 @@ import org.dsi.ecommerce.services.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -52,13 +54,20 @@ public class ProductController {
 
     @PostMapping("/addProduct")
     public String addProduct(@Valid  @ModelAttribute Product product,
+                             BindingResult result,
                              @RequestParam int categoryId,
                              @RequestParam(name = "image", required = false) MultipartFile file,
                              RedirectAttributes redirectAttributes) throws Exception{
+        if(result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("message",
+                    new Message("Product could not added", "alert-danger", Message.errorMessage(result)));
+            return "redirect:/admin/index";
+        }
+
         Category category = categoryService.findByCategoryId(categoryId);
         productService.createProduct(file, product, category);
-        redirectAttributes.addFlashAttribute("message", "Product Added Successfully!!");
-        redirectAttributes.addFlashAttribute("type", "alert-success");
+        redirectAttributes.addFlashAttribute("message",
+                new Message("Product added successfully", "alert-success", null));
         return "redirect:/admin/index";
     }
 
@@ -147,14 +156,15 @@ public class ProductController {
     }
 
     @PostMapping("/update-product")
-    public String updateProduct(@Valid  @ModelAttribute Product product,
+    public String updateProduct(@Valid @ModelAttribute Product product,
                              @RequestParam int categoryId,
                              @RequestParam(name = "image", required = false) MultipartFile file,
                              RedirectAttributes redirectAttributes) throws Exception{
+
         Category category = categoryService.findByCategoryId(categoryId);
         productService.updateProduct(file, product, category);
-        redirectAttributes.addFlashAttribute("message", "Product Updated Successfully!!");
-        redirectAttributes.addFlashAttribute("type", "alert-success");
+        redirectAttributes.addFlashAttribute("message",
+                new Message("Product updated successfully", "alert-success", null));
         return "redirect:/product-details?product="+product.getId();
     }
 }

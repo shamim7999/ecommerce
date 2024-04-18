@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link th:replace="/common/base::bootstrapCssFragment">
     <link th:replace="/common/base::cssFragment">
-    <title>Title</title>
+    <title th:text="${title}">Title</title>
 </head>
 <body>
     <section th:replace="/common/base::navbarFragment"></section>
@@ -14,9 +14,12 @@
         <div class="col-md-4 offset-md-4">
           <div class="card">
 
-              <!--                        alert message-->
-              <div th:if="${message}" th:classappend="${type}" class="alert" role="alert">
-                  <p th:text="${message}"></p>
+              <!-- Alert message -->
+              <div th:if="${message}" th:classappend="${message.type}" class="alert mt-3" role="alert">
+                  <p th:text="${message.content}"></p>
+                  <span th:if="${message.errorMessages}">
+                        <p th:each="error : ${message.errorMessages}" th:text="${error}"></p>
+                  </span>
               </div>
 
               <div class="card-body">

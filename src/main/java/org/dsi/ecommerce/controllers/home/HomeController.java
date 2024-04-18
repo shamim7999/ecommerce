@@ -1,6 +1,7 @@
 package org.dsi.ecommerce.controllers.home;
 
 import jakarta.validation.Valid;
+import org.dsi.ecommerce.helper.Message;
 import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.models.ConfirmationToken;
@@ -76,16 +77,18 @@ public class HomeController {
 
         try {
             if(result.hasErrors()) {
+                redirectAttributes.addFlashAttribute("message",
+                        new Message("Account creation failed", "alert-danger", Message.errorMessage(result)));
                 return "common/register";
             }
             userService.createUser(user);
-            redirectAttributes.addFlashAttribute("message", "Account Created Successfully!!");
-            redirectAttributes.addFlashAttribute("type", "alert-success");
+            redirectAttributes.addFlashAttribute("message",
+                    new Message("Account created Successfully", "alert-success", null));
             return "redirect:/register";
         } catch (DataAccessException ex) {
             result.rejectValue("email", "", "This email already exists.");
-            redirectAttributes.addFlashAttribute("message", "Error creating account: " + ex.getMessage());
-            redirectAttributes.addFlashAttribute("type", "alert-danger");
+            redirectAttributes.addFlashAttribute("message",
+                    new Message("Account creation failed", "alert-danger", Message.errorMessage(result)));
             return "redirect:/register";
         }
     }

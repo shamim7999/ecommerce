@@ -13,7 +13,7 @@ import java.util.UUID;
 public class ConfirmationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long tokenId;
+    private Long tokenId;
 
     private String confirmationToken;
 

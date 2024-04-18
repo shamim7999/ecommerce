@@ -29,8 +29,11 @@
         <!-- Alert message -->
         <div th:if="${message}" th:classappend="${message.type}" class="alert mt-3" role="alert">
             <p th:text="${message.content}"></p>
-            <p th:if="${message.errorMessages}" th:text="${message.errorMessages}"></p>
+            <span th:if="${message.errorMessages}">
+                <p th:each="error : ${message.errorMessages}" th:text="${error}"></p>
+            </span>
         </div>
+
         <div class="text-center mt-4">
             <h1 th:text="'Hello Admin'">Hello World!</h1>
         </div>
@@ -62,7 +65,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <a th:href="@{/admin/product-index}">
+                    <a th:href="@{'/admin/product-index'}">
                         <div class="card">
                             <div class="card-body">
                                 <div class="container text-center">

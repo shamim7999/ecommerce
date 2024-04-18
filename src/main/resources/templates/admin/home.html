@@ -27,8 +27,9 @@
 <div th:fragment="hello" th:object="${userDto}">
     <div class="container homeLinks">
         <!-- Alert message -->
-        <div th:if="${message}" th:classappend="${type}" class="alert mt-3" role="alert">
-            <p th:text="${message}"></p>
+        <div th:if="${message}" th:classappend="${message.type}" class="alert mt-3" role="alert">
+            <p th:text="${message.content}"></p>
+            <p th:if="${message.errorMessages}" th:text="${message.errorMessages}"></p>
         </div>
         <div class="text-center mt-4">
             <h1 th:text="'Hello Admin'">Hello World!</h1>

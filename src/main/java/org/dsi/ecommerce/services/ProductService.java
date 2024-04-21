@@ -62,9 +62,18 @@ public class ProductService {
                 });
     }
 
-    public Page<Product> findProductsBySearch(String query, int currentPage) {
+    public Page<Product> findProductsBySearchForAdmin(String query, int currentPage) {
         Pageable pageable = PageRequest.of(currentPage-1, 3);
-        return productRepository.findProductsBySearch(query,pageable)
+        return productRepository.findProductsBySearchForAdmin(query,pageable)
+                .map(product -> {
+                    product.setDescription(ShorterSentence.get10Words(product.getDescription()));
+                    return product;
+                });
+    }
+
+    public Page<Product> findProductsBySearchForUser(String query, int currentPage) {
+        Pageable pageable = PageRequest.of(currentPage-1, 3);
+        return productRepository.findProductsBySearchForUser(query,pageable)
                 .map(product -> {
                     product.setDescription(ShorterSentence.get10Words(product.getDescription()));
                     return product;
@@ -81,7 +90,7 @@ public class ProductService {
     }
 
     public List<Product> getAllProductsSortedByCategory() {
-        return productRepository.findAll(Sort.by("category_id"));
+        return productRepository.findAllByStatusTrue(Sort.by("category_id"));
     }
 
     public Product getProductById(int id) throws Exception {

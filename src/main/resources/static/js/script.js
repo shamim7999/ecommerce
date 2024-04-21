@@ -38,8 +38,9 @@ function updateCart() {
     if(cart == null || cart.length == 0) {
         console.log("Cart is empty.!");
         $(".cart-items").html("( 0 )");
-        $(".cart-body").html("<h3>Cart does not have any items</h3>");
+        $(".cart-body").html("<h3 class='text-center'>Cart does not have any items</h3>");
         $(".checkout-btn").attr("disabled", true);
+        $(".order-now-btn").attr("disabled", true);
     } else {
         $(".cart-items").html("( " + cart.length + " )");
         console.log(cart);

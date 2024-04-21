@@ -17,9 +17,12 @@
 
                     </span>
             <span th:if="${userDto.role == 'ROLE_USER'}">
-                        <a class="page-link"
+                        <a class="page-link" th:if="${showQuery == false}"
                            th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${currentProductPage - 1} }">Prev</a>
-                    </span>
+                        <a class="page-link" th:if="${showQuery == true}"
+                           th:href="@{'/user/product-index/queries?query=' + ${myQuery} + '&productPage=' + ${currentProductPage - 1} }">Prev</a>
+
+            </span>
 
         </li>
 
@@ -30,9 +33,9 @@
                         <a class="page-link" th:if="${showQuery == true}"  th:href="@{'/admin/product-index/queries?query=' + ${myQuery} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
                     </span>
             <span th:if="${i > 0 && userDto.role == 'ROLE_USER'}">
-                        <a class="page-link" th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
-                        <a class="page-link" th:href="@{'/user/product-index/queries?query=' + ${myQuery} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
-                    </span>
+                        <a class="page-link" th:if="${showQuery == false}"  th:href="@{'/user/product-index?category=' + ${categoryId} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
+                        <a class="page-link" th:if="${showQuery == true}"  th:href="@{'/user/product-index/queries?query=' + ${myQuery} + '&productPage=' + ${i} }"><span th:text="${i}"></span></a>
+            </span>
 
 
         </li>

@@ -6,6 +6,12 @@
     <link th:replace="/common/base::cssFragment">
     <link th:replace="/common/base::fontAwesomeFragment">
     <title>Title</title>
+    <style>
+        .card-body {
+            height: 300px; /* Fixed height for the card body */
+            overflow: hidden; /* Hide overflow content */
+        }
+    </style>
 </head>
 <body>
 <section th:replace="/common/base::navbarFragment"></section>
@@ -13,12 +19,12 @@
 <div th:fragment="hello" th:object="${userDto}">
 
     <div class="container homeLinks">
-        <!--                        alert message-->
+        <!-- Alert message -->
         <div th:if="${message}" th:classappend="${type}" class="alert mt-3" role="alert">
             <p th:text="${message}"></p>
         </div>
         <div class="text-center mt-4">
-            <h1 th:text=" 'Hello ' + ${userDto.name} ">Hello World!</h1>
+            <h1 th:text="'Hello ' + ${userDto.name}">Hello World!</h1>
         </div>
         <div class="row mt-3">
 
@@ -65,9 +71,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <section th:replace="/common/modals::allModals"></section>
 <section th:replace="/common/base::jsFragment"></section>

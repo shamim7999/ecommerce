@@ -24,7 +24,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="text-center mb-5">Your Selected Items</h3>
+                    <h3 class="text-center mb-5">Customer Details</h3>
                     <form action="#">
                         <div class="mb-3">
                             <label for="name" class="form-label">Your name</label>
@@ -43,11 +43,11 @@
 
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Enter Address</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" th:text="${userDto.address}" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
 
                         <div class="text-center">
-                            <button class="btn btn-outline-success">Order Now</button>
+                            <button class="btn btn-outline-success order-now-btn">Order Now</button>
                             <a th:href="@{/user/product-index}" onclick="window.location.href='/user/product-index'; return false;">
                                 <button class="btn btn-outline-primary">Continue</button>
                             </a>

@@ -1,6 +1,7 @@
 package org.dsi.ecommerce.controllers.admin;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.dsi.ecommerce.helper.Message;
 import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.models.Category;
@@ -16,26 +17,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.Principal;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/admin")
 public class CategoryController {
 
     private final CategoryService categoryService;
     private final UserService userService;
 
-    public CategoryController(CategoryService categoryService, UserService userService) {
-        this.categoryService = categoryService;
-        this.userService = userService;
-    }
-
-    @ModelAttribute
-    public Principal sendPrincipal(Principal principal) {
-        return principal;
-    }
-
-    @ModelAttribute
-    public UserDto sendUserDetails(Principal principal) {
-        return userService.getUserDetails(principal);
-    }
 
     @PostMapping("/add-category")
     public String addCategory(@Valid @ModelAttribute Category category,

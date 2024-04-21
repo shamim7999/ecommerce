@@ -44,11 +44,11 @@
 
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Enter Address</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" th:text="${userDto.address}" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
 
                             <div class="text-center">
-                                <button class="btn btn-outline-success">Order Now</button>
+                                <button class="btn btn-outline-success order-now-btn">Order Now</button>
                                 <a th:href="@{/admin/product-index}" onclick="window.location.href='/admin/product-index'; return false;">
                                     <button class="btn btn-outline-primary">Continue</button>
                                 </a>

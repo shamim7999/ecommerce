@@ -1,4 +1,4 @@
-package org.dsi.ecommerce.controllers.error;
+package org.dsi.ecommerce.controllers.global;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;

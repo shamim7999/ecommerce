@@ -1,5 +1,6 @@
 package org.dsi.ecommerce.controllers.user;
 
+import lombok.AllArgsConstructor;
 import org.dsi.ecommerce.helper.CategoryDto;
 import org.dsi.ecommerce.helper.ProductDto;
 import org.dsi.ecommerce.helper.UserDto;
@@ -20,32 +21,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/user")
 public class UserProductController {
     public final ProductService productService;
     public final CategoryService categoryService;
     public final UserService userService;
     public final DTOConverter dtoConverter;
-
-    public UserProductController(ProductService productService,
-                                CategoryService categoryService,
-                                UserService userService,
-                                DTOConverter dtoConverter) {
-        this.productService = productService;
-        this.categoryService = categoryService;
-        this.dtoConverter = dtoConverter;
-        this.userService = userService;
-    }
-
-    @ModelAttribute
-    public Principal sendPrincipal(Principal principal) {
-        return principal;
-    }
-
-    @ModelAttribute
-    public UserDto sendUserDetails(Principal principal) {
-        return userService.getUserDetails(principal);
-    }
 
     @GetMapping("/product-index")
     public String goProductIndex(@RequestParam("category") Optional<Integer> categoryId,
@@ -62,13 +44,31 @@ public class UserProductController {
 
         model.addAttribute("productDtos", productDtos);
 
-        List<CategoryDto> categoryDtos = dtoConverter.convertToListOfCategoryDTO(
-                categoryService.getAllCategories()
-        );
 
         model.addAttribute("categoryId", id);
         model.addAttribute("productDtos", productDtos);
-        model.addAttribute("categoryDtos", categoryDtos);
+        model.addAttribute("currentProductPage", currentProductPage);
+        model.addAttribute("totalProductPages", productDtos.getTotalPages());
+        model.addAttribute("showQuery", false);
+
+        return "user/product_index";
+    }
+
+    @GetMapping("product-index/queries")
+    public String goProductIndexBySearch(@RequestParam(value = "query", required = false) Optional<String> query,
+                                         @RequestParam("productPage") Optional<Integer> productPage,
+                                         Model model) {
+
+        int currentProductPage = productPage.orElse(1);
+        String myQuery = query.orElse("").trim();
+
+        Page<ProductDto> productDtos = dtoConverter.convertToPageOfProductDTO(
+                productService.findProductsBySearchForUser(myQuery, currentProductPage)
+        );
+
+        model.addAttribute("productDtos", productDtos);
+        model.addAttribute("showQuery", true);
+        model.addAttribute("myQuery", myQuery);
         model.addAttribute("currentProductPage", currentProductPage);
         model.addAttribute("totalProductPages", productDtos.getTotalPages());
 

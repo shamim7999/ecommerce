@@ -1,6 +1,7 @@
 package org.dsi.ecommerce.controllers.admin;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.dsi.ecommerce.helper.CategoryDto;
 import org.dsi.ecommerce.helper.Message;
 import org.dsi.ecommerce.helper.ProductDto;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/admin")
 public class ProductController {
 
@@ -31,26 +33,6 @@ public class ProductController {
     public final CategoryService categoryService;
     public final UserService userService;
     public final DTOConverter dtoConverter;
-
-    public ProductController(ProductService productService,
-                             CategoryService categoryService,
-                             UserService userService,
-                             DTOConverter dtoConverter) {
-        this.productService = productService;
-        this.categoryService = categoryService;
-        this.dtoConverter = dtoConverter;
-        this.userService = userService;
-    }
-
-    @ModelAttribute
-    public Principal sendPrincipal(Principal principal) {
-        return principal;
-    }
-
-    @ModelAttribute
-    public UserDto sendUserDetails(Principal principal) {
-        return userService.getUserDetails(principal);
-    }
 
     @PostMapping("/addProduct")
     public String addProduct(@Valid  @ModelAttribute Product product,
@@ -81,7 +63,7 @@ public class ProductController {
         String myQuery = query.orElse("").trim();
 
         Page<ProductDto> productDtos = dtoConverter.convertToPageOfProductDTO(
-                productService.findProductsBySearch(myQuery, currentProductPage)
+                productService.findProductsBySearchForAdmin(myQuery, currentProductPage)
         );
 
         System.out.println("HKDSJKDHSJKDHKSJHDKS: "+productDtos);
@@ -107,15 +89,10 @@ public class ProductController {
 
         Page<ProductDto> productDtos = dtoConverter.convertToPageOfProductDTO(
                         productService.findProductsByCategoryId(id, currentProductPage)
-                );
-
-        List<CategoryDto> categoryDtos = dtoConverter.convertToListOfCategoryDTO(
-                categoryService.getAllCategories()
         );
 
         model.addAttribute("categoryId", id);
         model.addAttribute("productDtos", productDtos);
-        model.addAttribute("categoryDtos", categoryDtos);
         model.addAttribute("currentProductPage", currentProductPage);
         model.addAttribute("totalProductPages", productDtos.getTotalPages());
         model.addAttribute("showQuery", false);
@@ -134,10 +111,7 @@ public class ProductController {
 
         model.addAttribute("productDto",
                 dtoConverter.convertToProductDTO(productService.getProductById(id)));
-        List<CategoryDto> categoryDtos = dtoConverter.convertToListOfCategoryDTO(
-                categoryService.getAllCategories()
-        );
-        model.addAttribute("categoryDtos", categoryDtos);
+
         return "common/product_details";
     }
 

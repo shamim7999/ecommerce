@@ -1,5 +1,6 @@
 package org.dsi.ecommerce.controllers.user;
 
+import lombok.AllArgsConstructor;
 import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.services.CategoryService;
@@ -15,33 +16,14 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
     private final CategoryService categoryService;
-
     private final ProductService productService;
-
     private final DTOConverter dtoConverter;
-
-    public UserController(UserService userService, CategoryService categoryService,
-                          ProductService productService, DTOConverter dtoConverter) {
-        this.userService = userService;
-        this.categoryService = categoryService;
-        this.productService = productService;
-        this.dtoConverter = dtoConverter;
-    }
-
-    @ModelAttribute
-    public Principal sendPrincipal(Principal principal) {
-        return principal;
-    }
-
-    @ModelAttribute
-    public UserDto sendUserDetails(Principal principal) {
-        return userService.getUserDetails(principal);
-    }
 
     @GetMapping({"/", "/index"})
     public String goHome(Model model) {

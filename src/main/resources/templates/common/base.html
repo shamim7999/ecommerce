@@ -18,7 +18,7 @@
 <body>
 <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-dark custom-bg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Tech Buddy</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
                     </ul>
                 </li>
 
-                <form th:if="${principal}" class="d-flex" th:action="@{'/admin/product-index/queries'}" method="get">
+                <form th:if="${principal}" class="d-flex" th:action="${userDto.role == 'ROLE_ADMIN' ? '/admin/product-index/queries' : '/user/product-index/queries'}" method="get">
                     <input class="form-control me-2" name="query" type="search" placeholder="Search by Title ... " aria-label="Search">
                     <button class="btn btn-success" type="submit">Search</button>
                 </form>

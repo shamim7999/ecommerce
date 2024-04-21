@@ -1,6 +1,7 @@
 package org.dsi.ecommerce.controllers.home;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.dsi.ecommerce.helper.Message;
 import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
@@ -19,35 +20,17 @@ import java.security.Principal;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 public class HomeController {
 
     private final UserService userService;
     private final ConfirmationTokenService confirmationTokenService;
-
     private final DTOConverter dtoConverter;
-
-    public HomeController(UserService userService, ConfirmationTokenService confirmationTokenService,
-                          DTOConverter dtoConverter) {
-        this.userService = userService;
-        this.confirmationTokenService = confirmationTokenService;
-        this.dtoConverter = dtoConverter;
-    }
-
-    @ModelAttribute
-    public Principal sendPrincipal(Principal principal) {
-        return principal;
-    }
-
-    @ModelAttribute
-    public UserDto sendUserDetails(Principal principal) {
-        return userService.getUserDetails(principal);
-    }
 
     @GetMapping("/test")
     public String sendHome() {
         return "common/page";
     }
-
 
     @GetMapping({"/index", "/"})
     public String sendIndex(@ModelAttribute UserDto userDto, Principal principal) {

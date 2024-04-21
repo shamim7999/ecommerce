@@ -1,5 +1,6 @@
 package org.dsi.ecommerce.controllers.admin;
 
+import lombok.AllArgsConstructor;
 import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.services.UserService;
@@ -15,26 +16,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("/admin")
 public class UserManagementController {
 
     private final UserService userService;
     private final DTOConverter dtoConverter;
-
-    public UserManagementController(UserService userService, DTOConverter dtoConverter) {
-        this.userService = userService;
-        this.dtoConverter = dtoConverter;
-    }
-
-    @ModelAttribute
-    public Principal sendPrincipal(Principal principal) {
-        return principal;
-    }
-
-    @ModelAttribute
-    public UserDto sendUserDetails(Principal principal) {
-        return userService.getUserDetails(principal);
-    }
 
     @GetMapping("/user-lists")
     public String goUserLists(Model model) {

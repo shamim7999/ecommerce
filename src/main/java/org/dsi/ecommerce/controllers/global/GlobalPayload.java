@@ -1,8 +1,8 @@
 package org.dsi.ecommerce.controllers.global;
 
 import lombok.AllArgsConstructor;
-import org.dsi.ecommerce.helper.CategoryDto;
-import org.dsi.ecommerce.helper.UserDto;
+import org.dsi.ecommerce.helper.dtos.CategoryDto;
+import org.dsi.ecommerce.helper.dtos.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.services.CategoryService;
 import org.dsi.ecommerce.services.UserService;
@@ -38,4 +38,5 @@ public class GlobalPayload {
     public List<UserDto> sendUserDtos() {
         return dtoConverter.convertToListOfUserDTO(userService.getAllUsers());
     }
+
 }

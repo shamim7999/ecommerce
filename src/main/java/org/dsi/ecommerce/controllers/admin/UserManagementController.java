@@ -1,18 +1,14 @@
 package org.dsi.ecommerce.controllers.admin;
 
 import lombok.AllArgsConstructor;
-import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,8 +21,6 @@ public class UserManagementController {
 
     @GetMapping("/user-lists")
     public String goUserLists(Model model) {
-        List<UserDto> userDtos = dtoConverter.convertToListOfUserDTO(userService.getAllUsers());
-        model.addAttribute("userDtos", userDtos);
         return "admin/user_control_panel";
     }
 

@@ -3,7 +3,6 @@ package org.dsi.ecommerce.controllers.admin;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.dsi.ecommerce.helper.Message;
-import org.dsi.ecommerce.helper.UserDto;
 import org.dsi.ecommerce.models.Category;
 import org.dsi.ecommerce.services.CategoryService;
 import org.dsi.ecommerce.services.UserService;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.security.Principal;
 
 @Controller
 @AllArgsConstructor

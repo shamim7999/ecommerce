@@ -1,9 +1,7 @@
 package org.dsi.ecommerce.controllers.user;
 
 import lombok.AllArgsConstructor;
-import org.dsi.ecommerce.helper.CategoryDto;
-import org.dsi.ecommerce.helper.ProductDto;
-import org.dsi.ecommerce.helper.UserDto;
+import org.dsi.ecommerce.helper.dtos.ProductDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.services.CategoryService;
 import org.dsi.ecommerce.services.ProductService;
@@ -12,12 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
-import java.util.List;
 import java.util.Optional;
 
 @Controller

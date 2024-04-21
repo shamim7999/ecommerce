@@ -1,4 +1,4 @@
-package org.dsi.ecommerce.helper;
+package org.dsi.ecommerce.helper.dtos;
 
 import lombok.*;
 

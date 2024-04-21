@@ -3,7 +3,7 @@ package org.dsi.ecommerce.controllers.home;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.dsi.ecommerce.helper.Message;
-import org.dsi.ecommerce.helper.UserDto;
+import org.dsi.ecommerce.helper.dtos.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.models.ConfirmationToken;
 import org.dsi.ecommerce.models.User;

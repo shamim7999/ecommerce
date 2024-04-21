@@ -1,6 +1,6 @@
 package org.dsi.ecommerce.services;
 
-import org.dsi.ecommerce.helper.UserDto;
+import org.dsi.ecommerce.helper.dtos.UserDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.models.ConfirmationToken;
 import org.dsi.ecommerce.models.User;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

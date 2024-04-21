@@ -1,8 +1,8 @@
 package org.dsi.ecommerce.helper.converter;
 
-import org.dsi.ecommerce.helper.CategoryDto;
-import org.dsi.ecommerce.helper.ProductDto;
-import org.dsi.ecommerce.helper.UserDto;
+import org.dsi.ecommerce.helper.dtos.CategoryDto;
+import org.dsi.ecommerce.helper.dtos.ProductDto;
+import org.dsi.ecommerce.helper.dtos.UserDto;
 import org.dsi.ecommerce.models.Category;
 import org.dsi.ecommerce.models.Product;
 import org.dsi.ecommerce.models.User;

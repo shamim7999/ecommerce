@@ -2,10 +2,8 @@ package org.dsi.ecommerce.controllers.admin;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.dsi.ecommerce.helper.CategoryDto;
 import org.dsi.ecommerce.helper.Message;
-import org.dsi.ecommerce.helper.ProductDto;
-import org.dsi.ecommerce.helper.UserDto;
+import org.dsi.ecommerce.helper.dtos.ProductDto;
 import org.dsi.ecommerce.helper.converter.DTOConverter;
 import org.dsi.ecommerce.models.Category;
 import org.dsi.ecommerce.models.Product;
@@ -20,8 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
